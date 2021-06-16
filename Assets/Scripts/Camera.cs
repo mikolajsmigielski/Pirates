@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Transform ObjectToTrack;
+    public Vector3 Delta = new Vector3(0, 20, -40);
     void Start()
     {
         
-    }
-
-    // Update is called once per frame
+    } 
     void Update()
     {
-        
+        var NewCameraposition = ObjectToTrack.position + Delta;
+        transform.position = NewCameraposition;
     }
 }
