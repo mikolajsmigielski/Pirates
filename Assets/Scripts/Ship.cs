@@ -6,7 +6,9 @@ public class Ship : MonoBehaviour
 {
     public float MinSpeed = 2f;
     public float MaxSpeed = 10f;
-    float CurrentSpeed; 
+    float CurrentSpeed;
+    public float MaxAngle = 30;
+    float CurrentAngle = 0;
     void Start()
     {
         
@@ -15,13 +17,27 @@ public class Ship : MonoBehaviour
     
     void Update()
     {
-        var TargetSpeed = MinSpeed;
-        if (Input.GetKey(KeyCode.W))
+        //target veocity
+        var TargetSpeed = Input.GetKey(KeyCode.W) ? MaxSpeed : MinSpeed;
+        CurrentSpeed = Mathf.Lerp(CurrentSpeed, TargetSpeed, Time.deltaTime);
+
+        //target angle
+        var TargetAngle = 0f;
+
+        if (Input.GetKey(KeyCode.A))
         {
-            TargetSpeed = MaxSpeed;
+            TargetAngle = - MaxAngle;
         }
-        CurrentSpeed = Mathf.Lerp(CurrentSpeed, TargetSpeed, Time.deltaTime); 
+        if (Input.GetKey(KeyCode.D))
+        {
+            TargetAngle = MaxAngle;
+        }
+        CurrentAngle = Mathf.Lerp(CurrentAngle, TargetAngle, Time.deltaTime / 2f);
+        
+        //movment
         var rigidbody = GetComponent<Rigidbody>();
-        rigidbody.velocity = Vector3.forward * CurrentSpeed;
+        rigidbody.rotation *= Quaternion.Euler(Vector3.up * CurrentAngle * Time.deltaTime);
+        rigidbody.velocity =  rigidbody.rotation * Vector3.back * CurrentSpeed;
+        
     }
 }
