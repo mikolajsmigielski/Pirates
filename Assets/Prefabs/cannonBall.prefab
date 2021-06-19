@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2732482330388176627}
   - component: {fileID: 1868059132098035368}
   - component: {fileID: 6739540010853825210}
+  - component: {fileID: 4667316306400975569}
   m_Layer: 0
   m_Name: cannonBall
   m_TagString: Untagged
@@ -107,8 +108,22 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4533794707607535398}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4667316306400975569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4533794707607535398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a2840001a1c06540b3179a29f6551f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WaterPS: {fileID: 2604217830174665904, guid: 55f479955eb6c124baf25602e0759a6a, type: 3}
+  TerrainPS: {fileID: 2142351630024284249, guid: d77e62df55aebfd4d981bb2d846e7365, type: 3}
