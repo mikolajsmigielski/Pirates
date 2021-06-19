@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CameraLookDirection { FORWARD, RIGHT, BACKWARD, LEFT }
+
 public class Camera : MonoBehaviour
 {
     public Transform ObjectToTrack;
@@ -20,5 +22,19 @@ public class Camera : MonoBehaviour
         transform.position = NewCameraposition;
         transform.LookAt(ObjectToTrack);
         transform.rotation *= Quaternion.Euler(-10f, 0, 0);
+        
+    }
+    public CameraLookDirection GetCameraLookDirection()
+    {
+        var angle = Mathf.DeltaAngle(0, cameraAngle);
+
+        if (-45 < angle && angle < 45)
+            return CameraLookDirection.FORWARD;
+        if (45 < angle && angle < 135)
+            return CameraLookDirection.RIGHT;
+        if (-135 < angle && angle < -45)
+            return CameraLookDirection.LEFT;
+
+        return CameraLookDirection.BACKWARD;
     }
 }
